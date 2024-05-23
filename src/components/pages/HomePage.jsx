@@ -1,11 +1,13 @@
 import React from 'react'
 import Hero from '../Hero'
+import { Box } from '@mui/material'
+import { red } from '@mui/material/colors'
 
 function HomePage() {
   return (
-    <div>
-        <Hero/>
-    </div>
+    <Box bgcolor={red}>
+       <Hero/>
+    </Box>
   )
 }
 

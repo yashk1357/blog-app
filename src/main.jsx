@@ -12,17 +12,32 @@ import store from './Store/store.js'
 import {Provider} from 'react-redux'
 import ProfilePage from './components/pages/ProfilePage.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx'
+import { createTheme, ThemeProvider } from '@mui/material'
+import LoginOptions from './components/pages/LoginOptions.jsx'
+import PostsPage from './components/pages/PostsPage.jsx'
+import CreatePostForm from './components/Posts/CreatePostForm.jsx'
 
-
+// const darkTheme = createTheme({
+//   palette: {
+//     mode: 'dark',
+//     primary: {
+//       main: '#1976d2',
+//     },
+//   },
+// });
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<MainLayout/>}>
       <Route path='/' element={<HomePage/>} />
+      <Route path='/login_options' element={<LoginOptions/>} />
       <Route path='/login' element={<LoginPage/>} />
       <Route path='/signup' element={<SignUpPage/>} />
+
       {/* private routes */}
       <Route path='' element={<PrivateRoute/>}>
+        <Route path='/create_post' element={<CreatePostForm/>} />
         <Route path='/profile' element={<ProfilePage/>} />
+        <Route path='/posts' element={<PostsPage/>} />
       </Route>
       
 
@@ -33,11 +48,13 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
+    {/* <ThemeProvider theme={darkTheme} > */}
     <RouterProvider router={router}>
       <React.StrictMode>
-      <App />
-      </React.StrictMode>
+        <App />
+       </React.StrictMode>
     </RouterProvider>
+    {/* </ThemeProvider> */}
   </Provider>
   
 )

@@ -3,14 +3,15 @@ import { Outlet } from 'react-router-dom'
 import Header from '../Header/Header'
 import { ToastContainer } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import { Box } from '@mui/material';
 
 function MainLayout() {
   return (
-    <div>
-        <Header/>
+    <Box>
         <ToastContainer/>
+
         <Outlet />
-    </div>
+    </Box>
   )
 }
 

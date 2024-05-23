@@ -18,7 +18,7 @@ function LoginPage() {
     useEffect(() => {
         setLoading(false)
         if(userInfo){
-            navigate('/')
+            navigate('/posts')
         }
 
     }, [userInfo, navigate])
