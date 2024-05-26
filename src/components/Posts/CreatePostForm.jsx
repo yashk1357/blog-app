@@ -3,19 +3,41 @@ import React from 'react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { toast } from 'react-toastify';
 
 function CreatePostForm() {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const navigate = useNavigate()
     const {userInfo} = useSelector((state) => state.auth)
-    console.log(userInfo)
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    console.log(userInfo.token)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        console.log('Title:', title);
-        console.log('Description:', description);
+        setLoading(true)
+        setError('')
+
+        try {
+            const response = await axios.post('http://localhost:3000/posts', {
+              title,
+              description,
+              token: userInfo.token
+            });
+            console.log('Post created:', response.data);
+            toast.success('Post created successfully!')
+            setTitle('');
+            setDescription('');
+            // Navigate back to posts page or any other page
+            navigate('/your_posts');
+          } catch (error) {
+            console.error('Error creating post:', error);
+            setError('Failed to create post');
+          } finally {
+            setLoading(false);
+          }       
         setTitle('');
         setDescription('');
        

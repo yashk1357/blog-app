@@ -8,11 +8,11 @@ function PostsPage() {
   return (
     <Box>
         <Header/>
-        <Grid container >
-            <Grid item xs={2}>
+        <Grid container>
+            <Grid item xs={1}>
                 <SideBar/>
             </Grid>
-            <Grid item xs={7}>
+            <Grid item xs={6}>
                 <Post/>
             </Grid>
         </Grid>

@@ -16,6 +16,8 @@ import { createTheme, ThemeProvider } from '@mui/material'
 import LoginOptions from './components/pages/LoginOptions.jsx'
 import PostsPage from './components/pages/PostsPage.jsx'
 import CreatePostForm from './components/Posts/CreatePostForm.jsx'
+import YourPosts from './components/pages/YourPosts.jsx'
+import EditPostPage from './components/pages/EditPostPage.jsx'
 
 // const darkTheme = createTheme({
 //   palette: {
@@ -36,6 +38,8 @@ const router = createBrowserRouter(
       {/* private routes */}
       <Route path='' element={<PrivateRoute/>}>
         <Route path='/create_post' element={<CreatePostForm/>} />
+        <Route path='/edit/:id' element={<EditPostPage/>} />
+        <Route path='/your_posts' element={<YourPosts/>} />
         <Route path='/profile' element={<ProfilePage/>} />
         <Route path='/posts' element={<PostsPage/>} />
       </Route>
