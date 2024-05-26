@@ -100,7 +100,7 @@ export default function SideBar() {
           <List>
             {[{ text: 'Create New Post', to: '/create_post' },
               { text: 'Your Posts', to: '/your_posts' },
-              { text: 'Spam', to: '/spam' }].map((item, index) => (
+              ].map((item, index) => (
               <ListItem key={item.text} disablePadding>
                 <ListItemButton component={Link} to={item.to}>
                   <ListItemText primary={item.text} />

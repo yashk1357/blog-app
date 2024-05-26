@@ -13,11 +13,35 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Container } from '@mui/material';
+import { Avatar, Container } from '@mui/material';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 const drawerWidth = 240;
 
+
+
 export default function TopCreator() {
+  const [creators, setCreators] = React.useState([])
+  const {userInfo} = useSelector(state => state.auth)
+  const token = userInfo.token
+
+  useEffect(()=> {
+  const fetchdata = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/top_creators?token=${token}`)
+        console.log(response.data)
+        setCreators(response.data)
+      } catch (error) {
+        console.log(error.message)
+      }
+
+    }
+
+    fetchdata();
+  },[])
+
   return (
     <Container sx={{marginTop: '60px', display: 'flex', justifyContent: 'space-evenly' }}>
       <CssBaseline />
@@ -43,30 +67,21 @@ export default function TopCreator() {
         </Typography>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
+          {creators.map((acc) => (
+            <ListItem key={acc.id} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                 <Avatar >
+                  {acc.full_name[0].toUpperCase()}
+                 </Avatar>
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={acc.full_name} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+
       </Drawer>
     </Container>
   );

@@ -14,9 +14,6 @@ function PostsPage() {
                 <SideBar/>
             </Grid>
             <Grid item xs={7} margin={"50px"}>
-                <Typography variant='h1'>
-                  ALL POSTS
-                </Typography> 
                 <Posts/>
             </Grid>
             <Grid item xs={3}>
