@@ -17,22 +17,11 @@ import { Container } from '@mui/material';
 
 const drawerWidth = 240;
 
-export default function Post() {
+export default function TopCreator() {
   return (
     <Container sx={{marginTop: '60px', display: 'flex', justifyContent: 'space-evenly' }}>
       <CssBaseline />
-      <Box
-        component="main"
-        sx={{bgcolor: 'background.default', p: 3 }}
-      >
-        
-        <Typography paragraph>
-          
-        </Typography>
-        <Typography paragraph>
-          
-        </Typography>
-      </Box>
+      
       <Drawer
         sx={{marginTop: '20px',
             zIndex: 6,
